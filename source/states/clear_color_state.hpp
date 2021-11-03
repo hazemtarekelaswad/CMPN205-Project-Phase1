@@ -10,12 +10,14 @@ class ClearColorState: public our::State {
         //To see how the clear color is written in the json files, see "config/blue-screen.json"
         //To know how read data from a nlohmann::json object, 
         //look at the following documentation: https://json.nlohmann.me/features/element_access/
-        auto color_obj = getApp()->getConfig().at("scene").at("clear-color");
-        float red = color_obj.at("r").get<float>();
-        float green = color_obj.at("g").get<float>();
-        float blue = color_obj.at("b").get<float>();
-        float alpha = color_obj.at("a").get<float>();
-        glClearColor(red, green, blue, alpha);
+        auto color = getApp()->getConfig().at("scene").at("clear-color");
+        float red = color.at("r");
+        float green = color.at("g");
+        float blue = color.at("b");
+        float alpha = color.at("a");
+        // std::cout << red << ' ' << green << ' ' << blue << ' ' << alpha << std::endl;
+        glClearColor(red, green, blue, alpha);         // Sets the clear color
+        glClear(GL_COLOR_BUFFER_BIT);
     }
 
     // onDraw(deltaTime) function is called every frame 
