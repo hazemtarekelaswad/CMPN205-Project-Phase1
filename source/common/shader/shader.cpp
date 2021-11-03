@@ -34,9 +34,9 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
     GLuint shaderID = glCreateShader(type);
 
     //TODO: send the source code to the shader and compile it
-    unsigned int vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertex_shader, 1, &sourceCStr, nullptr);   // 1 screen, src code
-    glCompileShader(vertex_shader);
+    glShaderSource(shaderID, 1, &sourceCStr, nullptr);   
+    glCompileShader(shaderID);
+
     // Here we check for compilation errors
     //TODO: Uncomment this if block
     if(std::string error = checkForShaderCompilationErrors(shaderID); error.size() != 0){
@@ -48,8 +48,8 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
 
     
     //TODO: attach the shader to the program then delete the shader
-    glAttachShader(program, vertex_shader);
-    glDeleteShader(vertex_shader);
+    glAttachShader(program, shaderID);
+    glDeleteShader(shaderID);
     //We return true since the compilation succeeded
     return true;
 }
