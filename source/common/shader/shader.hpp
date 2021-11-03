@@ -58,8 +58,17 @@ namespace our {
 
 
         //TODO: Delete the copy constructor and assignment operator
-        
+        ShaderProgram(const our::ShaderProgram&) = delete;
+        ShaderProgram& operator=(const our::ShaderProgram&) = delete;
+
+
         //Question: Why do we do this? Hint: Look at the deconstructor
+        /* 
+            Because if the ShaderProgram gets copied to another ShaderProgram, 
+            the "program" handler (ID) (Data member) would be copied, and then
+            the destructor will call openGL function the deletes the program
+            with two identical handlers (IDs)
+        */
     };
 
 }
