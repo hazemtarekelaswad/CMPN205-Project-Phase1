@@ -59,9 +59,6 @@ class FullscreenTriangleState: public our::State {
         glGenVertexArrays(1, &vertex_array_id);
         glBindVertexArray(vertex_array_id);
 
-        // glGenBuffers(1, &vertex_array_id);  // Creates buffer object, and pass the address of VBO 
-        // glBindBuffer(GL_ARRAY_BUFFER, vertex_array_id); // Binds the buffer to be of type array buffer
-
         glClearColor(0.0, 0.0, 0.0, 1.0);
     }
 
@@ -78,6 +75,5 @@ class FullscreenTriangleState: public our::State {
     void onDestroy() override {
         //TODO: Delete the vertex Array
         glDeleteVertexArrays(1, &vertex_array_id);
-        // glDeleteBuffers(1, &vertex_array_id);
     }
 };

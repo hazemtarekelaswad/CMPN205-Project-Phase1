@@ -38,22 +38,22 @@ namespace our {
 
         void set(const std::string &uniform, GLfloat value) {
             //TODO: call opengl to set the value to the uniform defined by name
-            glUniform1f(getUniformLocation(uniform) , value);
+            glUniform1f(getUniformLocation(uniform), value);
         }
 
         void set(const std::string &uniform, glm::vec2 value) {
             //TODO: call opengl to set the value to the uniform defined by name
-            glUniform2f(getUniformLocation(uniform) , value.x, value.y);
+            glUniform2f(getUniformLocation(uniform), value.x, value.y);
         }
 
         void set(const std::string &uniform, glm::vec3 value) {
             //TODO: call opengl to set the value to the uniform defined by name
-            glUniform3f(getUniformLocation(uniform) , value.x, value.y, value.z);
+            glUniform3f(getUniformLocation(uniform), value.x, value.y, value.z);
         }
 
         void set(const std::string &uniform, glm::vec4 value) {
             //TODO: call opengl to set the value to the uniform defined by name
-            glUniform4f(getUniformLocation(uniform) , value.x, value.y, value.z, value.w);
+            glUniform4f(getUniformLocation(uniform), value.x, value.y, value.z, value.w);
         }
 
 
