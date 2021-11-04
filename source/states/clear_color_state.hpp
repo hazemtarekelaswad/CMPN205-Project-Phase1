@@ -15,7 +15,7 @@ class ClearColorState: public our::State {
         float green = color.at("g").get<float>();
         float blue = color.at("b").get<float>();
         float alpha = color.at("a").get<float>();
-        glClearColor(red, green, blue, alpha);         // Sets the clear color
+        glClearColor(red, green, blue, alpha);         
         glClear(GL_COLOR_BUFFER_BIT);
     }
 

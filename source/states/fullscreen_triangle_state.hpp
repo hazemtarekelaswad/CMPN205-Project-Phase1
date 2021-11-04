@@ -16,7 +16,7 @@ class FullscreenTriangleState: public our::State {
     
     our::ShaderProgram program;
     //TODO: Add a variable in which we will store the name (ID) for a vertex array
-    unsigned int id;  // Vertex Array Object, Vertex Buffer Object
+    unsigned int vertex_array_id;
 
     // onInitialize() function is called once before the state starts
     void onInitialize() override {
@@ -56,14 +56,12 @@ class FullscreenTriangleState: public our::State {
 
         //TODO: Create a vertex Array
 
-        glGenVertexArrays(1, &id);
-        glGenBuffers(1, &id);  // Creates buffer object, and pass the address of VBO 
+        glGenVertexArrays(1, &vertex_array_id);
+        glBindVertexArray(vertex_array_id);
 
-        glBindVertexArray(id);
-        glBindBuffer(GL_ARRAY_BUFFER, id); // Binds the buffer to be of type array buffer
+        // glGenBuffers(1, &vertex_array_id);  // Creates buffer object, and pass the address of VBO 
+        // glBindBuffer(GL_ARRAY_BUFFER, vertex_array_id); // Binds the buffer to be of type array buffer
 
-
-        // We set the clear color to be black
         glClearColor(0.0, 0.0, 0.0, 1.0);
     }
 
@@ -79,7 +77,7 @@ class FullscreenTriangleState: public our::State {
     // onInitialize() function is called once after the state ends
     void onDestroy() override {
         //TODO: Delete the vertex Array
-        glDeleteVertexArrays(1, &id);
-        glDeleteBuffers(1, &id);
+        glDeleteVertexArrays(1, &vertex_array_id);
+        // glDeleteBuffers(1, &vertex_array_id);
     }
 };
