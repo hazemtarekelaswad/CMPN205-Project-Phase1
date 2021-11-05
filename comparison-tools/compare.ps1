@@ -11,8 +11,8 @@ $files = @(
     "line02.png"
 )
 
-$expected = "expected/"
-$output  = "screenshots/"
+$expected = "../expected/"
+$output  = "../screenshots/"
 $errors = "errors/"
 
 if(!(Test-Path $errors)) {
@@ -23,7 +23,7 @@ $success = 0
 
 foreach ($file in $files) {
     Write-Output "Testing $file ..."
-    & "./imgcmp" "$expected$file" "$output$file" -o "$errors$file"
+    & "./imgcmp" "$expected$file" "$output$file" -o "$errors$file" -t 0.01
     if($LASTEXITCODE -eq 0){
         $success += 1
     }
@@ -42,3 +42,4 @@ if($success -eq $total){
         Write-Output "FAILURE: $failure outputs are incorrect"
     }
 }
+pause

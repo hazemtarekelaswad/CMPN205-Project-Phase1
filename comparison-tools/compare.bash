@@ -11,8 +11,8 @@ files=(
     "line02.png"
 )
 
-expected="../expected/"
-output="../screenshots/"
+expected="expected/"
+output="screenshots/"
 errors="errors/"
 
 mkdir -p $errors
@@ -22,7 +22,7 @@ success=0
 for file in "${files[@]}"
 do
     echo "Testing $file ..."
-    ./imgcmp "$expected$file" "$output$file" -o "$errors$file"
+    ./imgcmp "$expected$file" "$output$file" -o "$errors$file" -t 0.01
     if [ $? -eq 0 ]; then
         ((success+=1))
     fi
