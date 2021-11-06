@@ -10,12 +10,22 @@ class ClearColorState: public our::State {
         //To see how the clear color is written in the json files, see "config/blue-screen.json"
         //To know how read data from a nlohmann::json object, 
         //look at the following documentation: https://json.nlohmann.me/features/element_access/
-        auto color = getApp()->getConfig().at("scene").at("clear-color");
-        float red = color.at("r").get<float>();
+        
+        //* Access the clear-color object in the json config file
+        auto color = getApp()->getConfig().at("scene").at("clear-color");   
+
+        //* Reads every channel value from the json config file
+        float red = color.at("r").get<float>(); 
         float green = color.at("g").get<float>();
         float blue = color.at("b").get<float>();
         float alpha = color.at("a").get<float>();
-        glClearColor(red, green, blue, alpha);         
+
+        //* Specify the clear values for the color buffer in GPU.
+        //* It takes values from [0, 1] for every color channel (RGBA)
+        glClearColor(red, green, blue, alpha);
+
+        //* Clears the window with the values previously set in the color buffer.
+        //* It takes bitfield specified by GL, and the color buffer is what we need.
         glClear(GL_COLOR_BUFFER_BIT);
     }
 
