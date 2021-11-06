@@ -34,7 +34,14 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
     GLuint shaderID = glCreateShader(type);
 
     //TODO: send the source code to the shader and compile it
+
+    //* shaderID:   is the shader handle we need to replace its source code
+    //* 1:          is the number of strings (source codes) and we have one string contains all the shader's src code
+    //* sourceCStr: is the string that contains the shader code
+    //* nullptr:    means that the string of the src code is NULL terminated
     glShaderSource(shaderID, 1, &sourceCStr, nullptr);   
+
+    //* Compile the shader specified by its ID (handle)
     glCompileShader(shaderID);
 
     // Here we check for compilation errors
@@ -48,7 +55,11 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
 
     
     //TODO: attach the shader to the program then delete the shader
+
+    //* Attach the shader to the program in order to link everything together later
     glAttachShader(program, shaderID);
+    
+    //* We don't need this shader anymore, it has been already attached to the program object
     glDeleteShader(shaderID);
     //We return true since the compilation succeeded
     return true;
@@ -58,6 +69,8 @@ bool our::ShaderProgram::attach(const std::string &filename, GLenum type) const 
 
 bool our::ShaderProgram::link() const {
     //TODO: call opengl to link the program identified by this->program 
+
+    //* Link everything together, and the attached shader will be used to create executables.
     glLinkProgram(program);
 
     // Here we check for linking errors
