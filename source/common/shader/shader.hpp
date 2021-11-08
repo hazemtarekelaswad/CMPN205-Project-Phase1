@@ -67,9 +67,11 @@ namespace our {
             Answer:
 
             Because if the ShaderProgram gets copied to another ShaderProgram, 
-            the "program" handler (ID) (Data member) would be copied, and then
-            the destructor will call openGL function to delete the program
-            with two identical handlers (IDs)
+            the "program" handler (ID) (Data member) would be copied. So now we have
+            like two pointers point to the same data, and then when 
+            the destructor of the copied ShaderProgram calls openGL function to destroy 
+            the program, there will be nothing left to delete because it would be already
+            deleted by the original program.
         */
     };
 
